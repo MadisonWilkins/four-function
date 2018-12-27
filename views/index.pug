@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title Calculator App
+    script.
+      function calculate() {
+        var theUrl = "http://localhost:3000/"
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", theUrl, true); // true for asynchronous 
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                console.log(xmlHttp.responseText);
+                document.getElementById("result").innerHTML = "\t" + xmlHttp.responseText
+        }
+        var op1 = document.getElementById("op1").value
+        var op2 = document.getElementById("op2").value
+        var op3 = document.getElementById("op3").value
+        var body = "opA="+op1+"&opB="+op2+"&opC="+op3
+        xmlHttp.send(body);
+      }
+    style.
+      p, input, button {
+        display: inline;
+        width: 20%;
+        text-align: center;
+      }
+  body
+    h1 This is a simple calculator API
+    input(type="text", id="op1")
+    select(id="op2")
+      option(value="none") choose...
+      option(value="add") +
+      option(value="subtract") -
+      option(value="multiply") *
+      option(value="divide") /
+    input(type="text", id="op3")
+    button(onclick="calculate()") =
+    p(id="result")
