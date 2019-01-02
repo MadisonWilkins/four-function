@@ -1,4 +1,5 @@
 var express = require('express');
+var calculate = require('../public/javascripts/functions.mjs')
 var router = express.Router();
 // add cors to router via a header
 
@@ -9,24 +10,7 @@ router.get('/', function (req, res, next) {
 
 /* POST for calculation. */
 router.post('/', function (req, res, next) {
-  var output = 0;
-  switch (req.body.opB) {
-    case "add":
-      output = parseFloat(req.body.opA) + parseFloat(req.body.opC)
-      break;
-    case "subtract":
-      output = parseFloat(req.body.opA) - parseFloat(req.body.opC)
-      break;
-    case "multiply":
-      output = parseFloat(req.body.opA) * parseFloat(req.body.opC)
-      break;
-    case "divide":
-      output = parseFloat(req.body.opA) / parseFloat(req.body.opC)
-      break;
-    default:
-      break;
-  }
   res.set('Content-Type', 'text/html')
-  res.send(output.toString())
+  res.send(calculate(req.body.opA, req.body.opB, req.body.opC))
 });
 module.exports = router;
