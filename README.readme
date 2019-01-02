@@ -1,4 +1,4 @@
-This is a Node application implementing a simple 4 funciton calculator.
+This is a Node application implementing a simple 4 function calculator.
 
 To start, clone the repo and run 'npm install' inside the local repo folder.
 Run 'npm start' and open http://localhost:3000/ to use the application.
